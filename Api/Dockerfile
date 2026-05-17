@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-# Install system dependencies needed for audio processing (FFmpeg is required for Whisper)
+
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     gcc \
@@ -15,5 +15,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Expose port for FastAPI
+
 EXPOSE 8000
