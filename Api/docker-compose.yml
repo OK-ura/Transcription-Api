@@ -1,0 +1,31 @@
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6367:6379"
+
+  api:
+    build: .
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    environment:
+      - RD_URL=redis://redis:6379/0
+    volumes:
+      - shared-audio:/tmp/audio_uploads
+    depends_on:
+      - redis
+
+  worker:
+    build: .
+    command: celery -A dispatcher.dispatch worker --loglevel=info --concurrency=1
+    environment:
+      - RD_URL=redis://redis:6379/0
+    volumes:
+      - shared-audio:/tmp/audio_uploads
+    depends_on:
+      - redis
+
+volumes:
+  shared-audio:
