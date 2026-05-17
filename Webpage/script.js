@@ -118,7 +118,7 @@ async function submit(base64String) {
                     if (data.status === 'SUCCESS') {
                         clearInterval(interval);
                         
-                        // FIXED: Safe nested un-wrapping logic for Celery's variable dictionary structures
+                        
                         let finalResult = data.result;
                         if (data.result && data.result.result !== undefined) {
                             finalResult = data.result.result;
