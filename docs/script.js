@@ -1,6 +1,5 @@
 
-
-const API = "https://transcription-api-186823278000.us-central1.run.app";
+const API ="https://pitrsn765-693332174382.us-central1.run.app" //"https://transcription-api-186823278000.us-central1.run.app";
 
 const record = document.getElementById('record');
 const listenPV = document.getElementById('listenPV');
